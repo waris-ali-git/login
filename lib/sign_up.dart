@@ -20,7 +20,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   signup() async {
     if (passC.text.trim() != confirmPassC.text.trim()) {
       ScaffoldMessenger.of(
-        context,
+        context ,
       ).showSnackBar(const SnackBar(content: Text("Passwords do NOT match")));
       return;
     }
@@ -54,7 +54,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       home: Scaffold(
         backgroundColor: Colors.white,
         body: Padding(
-          padding: const EdgeInsets.all(28.0),
+          padding: const EdgeInsets.all(24.0),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -70,7 +70,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   controller: firstNameC,
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: Colors.blueAccent,
+                    fillColor: Colors.blueAccent.shade100,
                     hintText: "First Name",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
@@ -85,7 +85,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   controller: lastNameC,
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: Colors.blueAccent,
+                    fillColor: Colors.blueAccent.shade100,
                     hintText: "Last Name",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
