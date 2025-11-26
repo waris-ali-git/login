@@ -154,7 +154,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   child: loading
                       ? const CircularProgressIndicator(color: Colors.white)
-                      : const Text("Sign Up is here again", style: TextStyle(fontSize: 18)),
+                      : const Text("Sign Up is here again removed", style: TextStyle(fontSize: 18)),
                 ),
               ],
             ),
