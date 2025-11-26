@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "625498955166",
+    "project_id": "authentication-df66c",
+    "storage_bucket": "authentication-df66c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:625498955166:android:7399b5ab560a40431a0a8f",
+        "android_client_info": {
+          "package_name": "com.example.login"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYY_9tfSgzV1xu20VNIyDWBWHUBv655tI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
