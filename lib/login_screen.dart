@@ -111,11 +111,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
                      Text(
                       "Student Portal",
-                      style: GoogleFonts.montserrat(
-                        fontSize: 36,
-                        fontWeight: FontWeight.w800,
+                      style: GoogleFonts.inter(
+                        fontSize: 40,
+                        fontWeight: FontWeight.w400,
                         color: Colors.white,
-                        letterSpacing: -0.8,
+                        letterSpacing: -1.5,
                       ),
                     ),
 
@@ -123,9 +123,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
                     Text(
                       "Sign in to continue",
-                      style: TextStyle(
-                        fontSize: 17,
-                        color: Colors.white.withOpacity(0.8),
+                      style: GoogleFonts.lexend(
+                        fontWeight: FontWeight.w200,
+                        fontSize: 18,
+                        color: Colors.white.withOpacity(0.9),
                         letterSpacing: -0.2,
                       ),
                     ),
@@ -210,7 +211,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
 
-                    const SizedBox(height: 50),
+                    const SizedBox(height: 23),
 
                     // Footer Links
                     Column(
