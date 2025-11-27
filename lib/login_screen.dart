@@ -163,7 +163,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return TextField(
       controller: controller,
       obscureText: true,
-      style: const TextStyle(color: Colors.black87),
+      style: const TextStyle(color: Colors.black12),
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(color: Colors.black12),
