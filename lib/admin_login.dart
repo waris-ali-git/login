@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:login/database.dart';
 
 class AdminLoginScreen extends StatefulWidget {
   const AdminLoginScreen({super.key});
@@ -14,19 +14,17 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
   bool loading = false;
 
   login() async {
-    try {
-      setState(() => loading = true);
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailC.text.trim(),
-        password: passC.text.trim(),
-      );
-      Navigator.pushReplacementNamed(context, '/admin-dashboard');
-    } catch (e) {
+    final email = emailC.text.trim();
+    final password = passC.text.trim();
+
+    if (Database.adminCredentials.containsKey(email) &&
+        Database.adminCredentials[email] == password) {
+      Navigator.pushReplacementNamed(context, '/admin-dashboard', arguments: email);
+    } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Login Failed: $e")),
+        const SnackBar(content: Text("Invalid admin credentials")),
       );
     }
-    setState(() => loading = false);
   }
 
   @override

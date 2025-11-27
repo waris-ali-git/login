@@ -119,6 +119,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/admin-login');
+                    },
+                    child: const Text(
+                      "Are you an admin? Login here",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                   const SizedBox(height: 40),
                 ],
               ),
