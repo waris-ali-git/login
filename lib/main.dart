@@ -1,32 +1,31 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:login/login_screen.dart';
 import 'package:login/sign_up.dart';
+import 'package:login/student_dashboard.dart';
 
-// void main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await Firebase.initializeApp();
-//   runApp(SignUpScreen());
-// }
-
-
-void main(){
-
-  Person person = Person(name: "John", age: 30);
-  print(person.name);
-  print(person.age);
-
-  person = person.copyWith(name: "Jane");
-  print(person.name);
-  print(person.age);
-
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(const MyApp());
 }
 
-class Person {
-  final String name;
-  final int age;
-  Person({required this.name, required this.age});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
-  Person copyWith({String? name, int? age}) {
-    return Person(name: name ?? this.name, age: age ?? this.age);
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Student Portal',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const SignUpScreen(),
+        '/login': (context) => const LoginScreen(),
+        '/student-dashboard': (context) => const StudentDashboard(),
+      },
+    );
   }
 }
