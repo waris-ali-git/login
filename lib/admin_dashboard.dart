@@ -1,6 +1,24 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+// A simple data class for a lecture
+class Lecture {
+  final String name;
+  final String description;
+  final String filePath;
+
+  Lecture({required this.name, required this.description, required this.filePath});
+
+  // Methods to convert to/from JSON to store in SharedPreferences
+  Map<String, dynamic> toJson() => {
+    'name': name,
+    'description': description,
+    'filePath': filePath,
+  };
 
 class AdminDashboard extends StatelessWidget {
   const AdminDashboard({super.key});
