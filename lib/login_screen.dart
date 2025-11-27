@@ -59,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 colors: [
                   Color(0xFF1E3A8A), // Deep indigo
                   Color(0xFF0F172A), // Almost black
-                  Color(0xFF1E293B),
+                  Colors.black,
                 ],
                 stops: [0.0, 0.6, 1.0],
               ),
