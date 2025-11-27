@@ -133,7 +133,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.blueAccent,
-                    hintText: "Confirm Password",
+                    hintText: "Confirm Passwords",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
                       borderSide: BorderSide.none,
@@ -146,7 +146,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ElevatedButton(
                   onPressed: loading ? null : signup,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.pinkAccent,
+                    backgroundColor: Colors.pink,
                     minimumSize: const Size(double.infinity, 55),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
