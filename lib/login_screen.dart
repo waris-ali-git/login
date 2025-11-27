@@ -166,7 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
       style: const TextStyle(color: Colors.black87),
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: TextStyle(color: Colors.grey.shade600),
+        hintStyle: TextStyle(color: Colors.black12),
         prefixIcon: Icon(Icons.lock, color: Colors.grey.shade600),
         filled: true,
         fillColor: Colors.white.withOpacity(0.95),
@@ -180,3 +180,8 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
+
+
+//commit
+//push
+//pull/update
