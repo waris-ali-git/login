@@ -38,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Colors.black,
+              Colors.blue.shade300,
               Colors.purple.shade400,
             ],
           ),
@@ -163,7 +163,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return TextField(
       controller: controller,
       obscureText: true,
-      style: const TextStyle(color: Colors.blue),
+      style: const TextStyle(color: Colors.black87),
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(color: Colors.black12),
