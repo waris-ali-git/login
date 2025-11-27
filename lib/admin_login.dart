@@ -145,7 +145,7 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
       style: const TextStyle(color: Colors.black87),
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: TextStyle(color: Colors.grey.shade700),
+        hintStyle: TextStyle(color: Colors.black12),
         prefixIcon: Icon(Icons.lock, color: Colors.grey.shade600),
         filled: true,
         fillColor: Colors.white.withOpacity(0.95),
