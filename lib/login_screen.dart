@@ -125,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                     child: const Text(
                       "Are you an admin? Login here",
-                      style: TextStyle(color: Colors.brown),
+                      style: TextStyle(color: Colors.black),
                     ),
                   ),
                   const SizedBox(height: 40),
