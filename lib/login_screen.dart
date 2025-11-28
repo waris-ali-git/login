@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:login/google_signin.dart'; // Import the Google Sign-In class
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -14,6 +15,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final emailC = TextEditingController();
   final passC = TextEditingController();
   bool loading = false;
+  final GoogleSign _googleSign =
+      GoogleSign(); // Create an instance of GoogleSign
 
   Future<void> login() async {
     if (emailC.text.trim().isEmpty || passC.text.trim().isEmpty) {
@@ -44,13 +47,38 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  // New method for Google Sign-In
+  Future<void> _handleGoogleSignIn() async {
+    setState(() => loading = true);
+    try {
+      await _googleSign.signInWithGoogle();
+      if (FirebaseAuth.instance.currentUser != null) {
+        if (mounted) {
+          Navigator.pushReplacementNamed(context, '/student-dashboard');
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+              content: Text("Google Sign-In failed: $e"),
+              backgroundColor: Colors.redAccent),
+        );
+      }
+    } finally {
+      if (mounted) {
+        setState(() => loading = false);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Stack(
         children: [
-          // Soft animated gradient background (pure Apple aesthetic)
+          // Soft animated gradient background
           Container(
             decoration: const BoxDecoration(
               gradient: RadialGradient(
@@ -66,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
 
-          // Subtle moving light orb effect (very Apple)
+          // Subtle moving light orb effect
           AnimatedPositioned(
             duration: const Duration(seconds: 20),
             curve: Curves.easeInOut,
@@ -101,15 +129,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: const EdgeInsets.all(28),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        border: Border.all(color: Colors.white.withOpacity(0.3), width: 2),
+                        border: Border.all(
+                            color: Colors.white.withOpacity(0.3), width: 2),
                         color: Colors.white.withOpacity(0.15),
                       ),
-                      child: const Icon(Icons.school_rounded, size: 72, color: Colors.white),
+                      child: const Icon(Icons.school_rounded,
+                          size: 72, color: Colors.white),
                     ),
 
                     const SizedBox(height: 32),
 
-                     Text(
+                    Text(
                       "Student Portal",
                       style: GoogleFonts.inter(
                         fontSize: 40,
@@ -178,7 +208,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 child: ElevatedButton(
                                   onPressed: loading ? null : login,
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: const Color(0xFF0A84FF), // Apple Blue
+                                    backgroundColor: const Color(0xFF0A84FF),
+                                    // Apple Blue
                                     foregroundColor: Colors.white,
                                     elevation: 0,
                                     shadowColor: Colors.transparent,
@@ -188,19 +219,51 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                   child: loading
                                       ? const SizedBox(
-                                    width: 26,
-                                    height: 26,
-                                    child: CircularProgressIndicator(
-                                      color: Colors.white,
-                                      strokeWidth: 3,
-                                    ),
-                                  )
+                                          width: 26,
+                                          height: 26,
+                                          child: CircularProgressIndicator(
+                                            color: Colors.white,
+                                            strokeWidth: 3,
+                                          ),
+                                        )
                                       : const Text(
-                                    "Sign In",
+                                          "Sign In",
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w600,
+                                            letterSpacing: -0.3,
+                                          ),
+                                        ),
+                                ),
+                              ),
+                              const SizedBox(height: 16),
+                              // Spacing for the new button
+
+                              // Google Sign In Button
+                              SizedBox(
+                                width: double.infinity,
+                                height: 56,
+                                child: ElevatedButton.icon(
+                                  onPressed:
+                                      loading ? null : _handleGoogleSignIn,
+                                  icon: const Icon(Icons.g_mobiledata_rounded,
+                                      size: 30),
+                                  // Add google logo to assets
+                                  label: const Text(
+                                    "Sign in with Google",
                                     style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w600,
                                       letterSpacing: -0.3,
+                                    ),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.white,
+                                    foregroundColor: Colors.black,
+                                    elevation: 0,
+                                    shadowColor: Colors.transparent,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(16),
                                     ),
                                   ),
                                 ),
@@ -217,14 +280,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     Column(
                       children: [
                         TextButton(
-                          onPressed: () => Navigator.pushNamed(context, '/signup'),
+                          onPressed: () =>
+                              Navigator.pushNamed(context, '/signup'),
                           child: const Text(
                             "Don't have an account? Sign Up",
-                            style: TextStyle(color: Colors.white70, fontSize: 15.5),
+                            style: TextStyle(
+                                color: Colors.white70, fontSize: 15.5),
                           ),
                         ),
                         TextButton(
-                          onPressed: () => Navigator.pushNamed(context, '/admin-login'),
+                          onPressed: () =>
+                              Navigator.pushNamed(context, '/admin-login'),
                           child: const Text(
                             "Admin Login",
                             style: TextStyle(
@@ -258,12 +324,14 @@ class _LoginScreenState extends State<LoginScreen> {
       controller: controller,
       obscureText: obscureText,
       keyboardType: keyboardType,
-      textInputAction: obscureText ? TextInputAction.done : TextInputAction.next,
+      textInputAction:
+          obscureText ? TextInputAction.done : TextInputAction.next,
       onSubmitted: onSubmitted,
       style: const TextStyle(color: Colors.white, fontSize: 17),
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: TextStyle(color: Colors.white.withOpacity(0.7), fontSize: 17),
+        labelStyle:
+            TextStyle(color: Colors.white.withOpacity(0.7), fontSize: 17),
         prefixIcon: Icon(icon, color: Colors.white.withOpacity(0.8)),
         filled: true,
         fillColor: Colors.white.withOpacity(0.08),
@@ -279,7 +347,8 @@ class _LoginScreenState extends State<LoginScreen> {
           borderRadius: BorderRadius.circular(16),
           borderSide: const BorderSide(color: Colors.white, width: 2),
         ),
-        contentPadding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
       ),
     );
   }

@@ -1,0 +1,14 @@
+flutter_native_splash:
+  android: true
+  ios: true
+  web: false
+
+  # General splash screen settings for Android 11 and below.
+  color: "#d4e4ed"
+  image: "assets/piv.png"
+
+  # Android 12-specific settings
+  android_12:
+    color: "#d4e4ed"
+    image: "assets/piv.png"
+    branding: "assets/branding.png"
