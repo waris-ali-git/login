@@ -14,7 +14,7 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
   bool loading = false;
 
   login() async {
-    final email = emailC.text.trim();
+    final email = emailC.text.trim().toLowerCase();
     final password = passC.text.trim();
 
     if (Database.adminCredentials.containsKey(email) &&
