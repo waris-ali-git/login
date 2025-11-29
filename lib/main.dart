@@ -22,9 +22,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/',
+      // Explicitly setting initialRoute to /signup
+      initialRoute: '/signup',
       routes: {
-        '/': (context) => const SignUpScreen(),
+        '/signup': (context) => const SignUpScreen(),
         '/login': (context) => const LoginScreen(),
         '/student-dashboard': (context) => const StudentDashboard(),
         '/admin-login': (context) => const AdminLoginScreen(),
